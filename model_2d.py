@@ -11,6 +11,7 @@ class Model2D(Model):
         self._quit = False
         self.player = Player2D()
         self._world = World2D()
+        self.rectangle = [0,0]
 
     def update(self, user_input):
         pass
@@ -29,3 +30,5 @@ class Model2D(Model):
     @quit.setter
     def quit(self, value: bool):
         self._quit = value
+
+    

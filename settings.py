@@ -5,9 +5,12 @@ class Settings:
     DEFAULT_WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_HEIGHT)
 
     # Frames per second
-    FPS = 60
+    FPS = 30
 
     # Background colors
     BG_BLACK = (0, 0, 0)
     BG_WHITE = (255, 255, 255)
     BG_DARK_GRAY = (40, 40, 40)
+
+    # Character movement
+    PLAYER_SPEED = 5

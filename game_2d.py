@@ -14,15 +14,13 @@ class Game2D:
         self.model = model
         self.view = view
         self.controller = controller
-        self.running = None # initializing game loop sets running to True
+        self.running = True
         self.run()
 
     def run(self):
-        self.running = True
         while self.running:
             if self.model.quit:
-                pygame.quit()
-                sys.exit()
+                self.running = False
 
             # Tell the controller to handle user input.
             self.controller.handle_user_input()
@@ -36,13 +34,16 @@ class Game2D:
             # update the view based on the model
             self.view.update(self.model)
 
-            self.view.draw()
+            self.view.draw(self.model)
 
             self.controller.clock.tick(Settings.FPS)
 
+        pygame.quit()
+        sys.exit()
 
-    def handle_user_input(self, user_input):
-        pass
+
+
+
 
 if __name__ == "__main__":
     pass

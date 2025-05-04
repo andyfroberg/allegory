@@ -23,8 +23,8 @@ class View2D(View):
                                   self._ui_overlay_sprites]
 
     def update(self, model: Model2D):  # does this need model as an argument?
+        pass
         # update world sprites
-
 
         # update item sprites
 
@@ -35,17 +35,16 @@ class View2D(View):
         # update hud sprites
 
         # update ui overlay sprites
-        pass
  
 
-    def draw(self):
-        # pygame.display.set_caption('Allegory') # todo: update with abstract version of displaying title (e.g., "Allegory - PAUSED")
+    def draw(self, model: Model2D):
+        pygame.display.set_caption('Allegory') # todo: update with abstract version of displaying title (e.g., "Allegory - PAUSED")
         # https://scuba.cs.uchicago.edu/pygame/ref/sprite.html#pygame.sprite.Group
         self._screen.fill(Settings.BG_BLACK)  # todo: add contextual background colors (based on the current level or area in which the player is)
-        for sprite_group in self._all_sprite_groups:
-            sprite_group.draw(self._screen)
+        # for sprite_group in self._all_sprite_groups:
+        #     sprite_group.draw(self._screen)
 
-        pygame.draw.rect(self._screen, (255, 0, 0), (0, 0, 50, 50))  # Example of drawing a red rectangle
+        pygame.draw.rect(self._screen, (255, 0, 0), (model.rectangle[0], model.rectangle[1], 50, 50))  # Example of drawing a red rectangle
 
         pygame.display.flip()
 
