@@ -1,10 +1,10 @@
 import pygame
 import sys
-from model_2d import Model2D
-from view_2d import View2D
-from controller_2d import Controller2D
+from model.model_2d import Model2D
+from view.view_2d import View2D
+from controller.controller_2d import Controller2D
 from game_2d import Game2D
-from settings import Settings
+from model.settings import Settings
 
 
 def game_entry_point(game_type="2d"):

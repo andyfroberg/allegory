@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from game_state_manager import GameStateManager
+from model.game_state_manager import GameStateManager
 
 class Model(metaclass=ABCMeta):
     @property

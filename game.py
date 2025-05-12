@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
-from model import Model
-from view import View
-from controller import Controller
+from model.model import Model
+from view.view import View
+from controller.controller import Controller
 
 class Game(metaclass=ABCMeta):
     @property

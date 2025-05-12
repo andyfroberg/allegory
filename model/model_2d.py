@@ -1,8 +1,8 @@
-from model import Model
-from game_state_manager import GameStateManager
-from game_state import GameState
-from player_2d import Player2D
-from world_2d import World2D
+from model.model import Model
+from model.game_state_manager import GameStateManager
+from model.game_state import GameState
+from model.player_2d import Player2D
+from model.world_2d import World2D
 
 class Model2D(Model):
     def __init__(self):
@@ -11,7 +11,6 @@ class Model2D(Model):
         self._quit = False
         self.player = Player2D()
         self._world = World2D()
-        self.rectangle = [0,0]
 
     def update(self, user_input):
         pass
@@ -30,5 +29,9 @@ class Model2D(Model):
     @quit.setter
     def quit(self, value: bool):
         self._quit = value
+
+    @property
+    def world(self) -> World2D:
+        return self._world
 
     

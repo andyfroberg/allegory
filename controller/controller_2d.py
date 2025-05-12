@@ -1,11 +1,9 @@
 import pygame
-import sys
-from controller import Controller
-from model_2d import Model2D
-from view_2d import View2D
-from game_state_manager import GameStateManager
-from game_state import GameState
-from settings import Settings
+from controller.controller import Controller
+from model.model_2d import Model2D
+from view.view_2d import View2D
+from model.game_state import GameState
+from model.settings import Settings
 
 class Controller2D(Controller):
     def __init__(self, model: Model2D, view: View2D):
@@ -31,24 +29,26 @@ class Controller2D(Controller):
                     self.model.update_game_state(GameState.GAME_PLAY)
                 else:
                     self.model.update_game_state(GameState.PAUSE_MENU)
+        
+        # Player basic movement
+        direction = pygame.math.Vector2(0, 0)
+        if user_input[pygame.K_w]:  # move up
+            direction[1] -= Settings.PLAYER_SPEED
 
-        # Game play handling
+        if user_input[pygame.K_s]:  # move down
+            direction[1] += Settings.PLAYER_SPEED
+
+        if user_input[pygame.K_a]:  # Move left
+            direction[0] -= Settings.PLAYER_SPEED
+
+        if user_input[pygame.K_d]:  # Move right
+            direction[0] += Settings.PLAYER_SPEED
+
+        # Player jump
         if user_input[pygame.K_SPACE]:  # Jump
             pass
 
-        # -- Test movement --
-        if user_input[pygame.K_w]:  # move up
-            self._model.rectangle[1] -= Settings.PLAYER_SPEED
-
-        if user_input[pygame.K_s]:  # move down
-            self._model.rectangle[1] += Settings.PLAYER_SPEED
-
-        if user_input[pygame.K_a]:  # Move left
-            self._model.rectangle[0] -= Settings.PLAYER_SPEED
-
-        if user_input[pygame.K_d]:  # Move right
-            self._model.rectangle[0] += Settings.PLAYER_SPEED
-        # -- End test movement --
+        self.model.player.move(direction)
 
         if user_input[pygame.K_LCTRL] and user_input[pygame.K_q]:
             self._model.quit = True  

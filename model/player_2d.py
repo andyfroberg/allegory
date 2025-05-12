@@ -1,14 +1,28 @@
 import pygame
-from player import Player
+from model.player import Player
 
 class Player2D(Player):
     def __init__(self, 
-                 initial_pos=pygame.math.Vector2(0.0, 0.0), 
-                 initial_speed=0.0):
+                 initial_pos=pygame.math.Vector2(50.0, 50.0), 
+                 initial_speed=5.0):
         super().__init__()
         # Initialize player attributes specific to 2D
         self._pos = initial_pos
         self._speed = initial_speed
+
+
+    def move(self, direction: pygame.math.Vector2):
+        """
+        Move the player in the specified direction.
+        :param direction: A pygame.math.Vector2 representing the direction to move.
+        """
+        if not isinstance(direction, pygame.math.Vector2):
+            raise TypeError(f"Expected pygame.math.Vector2 for direction, got {type(direction)}")
+        
+        if direction[0] == 0 and direction[1] == 0: 
+            return
+        
+        self._pos += direction.normalize() * self._speed
 
     @property
     def pos(self) -> pygame.math.Vector2:

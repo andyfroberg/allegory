@@ -2,8 +2,8 @@ import pygame
 import sys
 from math import hypot
 from model import Model
-from settings import Settings
-from player import Player
+from model.settings import Settings
+from model.player import Player
 from dungeon_factory import DungeonFactory
 from player_sprite import PlayerSprite
 

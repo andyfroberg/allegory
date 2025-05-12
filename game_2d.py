@@ -1,10 +1,10 @@
 import pygame
 import sys
 from game import Game
-from controller_2d import Controller2D
-from model_2d import Model2D
-from view_2d import View2D
-from settings import Settings
+from controller.controller_2d import Controller2D
+from model.model_2d import Model2D
+from view.view_2d import View2D
+from model.settings import Settings
 
 
 class Game2D:
@@ -22,9 +22,12 @@ class Game2D:
             if self.model.quit:
                 self.running = False
 
+            ##### PROCESS INPUT #####
             # Tell the controller to handle user input.
             self.controller.handle_user_input()
 
+
+            ##### UPDATE GAME STATE #####
             # Get the keys the player is pressing this loop iteration.
             # user_input = self.controller.handle_user_input()
                 
@@ -34,6 +37,7 @@ class Game2D:
             # update the view based on the model
             self.view.update(self.model)
 
+            ##### DISPLAY GAME STATE #####
             self.view.draw(self.model)
 
             self.controller.clock.tick(Settings.FPS)

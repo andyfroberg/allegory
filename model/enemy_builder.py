@@ -1,4 +1,4 @@
-from enemy import Enemy
+from model.enemy import Enemy
 from abc import ABCMeta, abstractmethod
 
 class EnemyBuilder(metaclass=ABCMeta):

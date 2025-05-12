@@ -1,7 +1,7 @@
 import pygame
-from view import View
-from model_2d import Model2D
-from settings import Settings
+from view.view import View
+from model.model_2d import Model2D
+from model.settings import Settings
 
 class View2D(View):
     def __init__(self, window_size=(Settings.DEFAULT_WINDOW_SIZE)):
@@ -44,7 +44,14 @@ class View2D(View):
         # for sprite_group in self._all_sprite_groups:
         #     sprite_group.draw(self._screen)
 
-        pygame.draw.rect(self._screen, (255, 0, 0), (model.rectangle[0], model.rectangle[1], 50, 50))  # Example of drawing a red rectangle
+        for i, row in enumerate(model.world.world_map):
+            for j, col in enumerate(model.world.world_map[i]):
+                if row[j] == 'w':
+                    pygame.draw.rect(self._screen, (0, 255, 0), (j*50, i*50, 50, 50))
+                elif row[j] == ' ':
+                    pygame.draw.rect(self._screen, (0, 0, 255), (j*50, i*50, 50, 50))
+
+        pygame.draw.circle(self._screen, (255, 0, 0), (model.player.pos[0], model.player.pos[1]), 25)  # Example of drawing a red rectangle
 
         pygame.display.flip()
 
