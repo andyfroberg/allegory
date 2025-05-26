@@ -3,6 +3,8 @@ from view.view import View
 from model.model_2d import Model2D
 from model.settings import Settings
 
+from view.spritesheet import Spritesheet
+
 class View2D(View):
     def __init__(self, window_size=(Settings.DEFAULT_WINDOW_SIZE)):
         super().__init__()
@@ -21,6 +23,13 @@ class View2D(View):
                                   self._player_sprites, 
                                   self._hud_sprites,
                                   self._ui_overlay_sprites]
+        
+        self.test_spritesheet = Spritesheet("./assets/brackeys_platformer_assets/sprites/world_tileset.png")
+        self._world_floor = self.test_spritesheet.image_at((32,32,16,16))
+
+        self.player_spritesheet = Spritesheet("./assets/brackeys_platformer_assets/sprites/knight.png")
+        self._p = self.player_spritesheet.image_at((9,9,17,24))
+
 
     def update(self, model: Model2D):  # does this need model as an argument?
         pass
@@ -44,14 +53,16 @@ class View2D(View):
         # for sprite_group in self._all_sprite_groups:
         #     sprite_group.draw(self._screen)
 
+
         for i, row in enumerate(model.world.world_map):
             for j, col in enumerate(model.world.world_map[i]):
                 if row[j] == 'w':
-                    pygame.draw.rect(self._screen, (0, 255, 0), (j*50, i*50, 50, 50))
+                    self._screen.blit(self._world_floor, (j*16,i*16))
                 elif row[j] == ' ':
-                    pygame.draw.rect(self._screen, (0, 0, 255), (j*50, i*50, 50, 50))
+                    pygame.draw.rect(self._screen, (17, 17, 39), (j*16, i*16, 16, 16))
 
-        pygame.draw.circle(self._screen, (255, 0, 0), (model.player.pos[0], model.player.pos[1]), 25)  # Example of drawing a red rectangle
+        # pygame.draw.circle(self._screen, (255, 0, 0), (model.player.pos[0], model.player.pos[1]), 25)  # Example of drawing a red rectangle
+        self._screen.blit(self._p, (model.player.pos[0], model.player.pos[1]))
 
         pygame.display.flip()
 
