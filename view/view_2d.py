@@ -25,10 +25,10 @@ class View2D(View):
                                   self._ui_overlay_sprites]
         
         self.test_spritesheet = Spritesheet("./assets/brackeys_platformer_assets/sprites/world_tileset.png")
-        self._world_floor = self.test_spritesheet.image_at((32,32,16,16))
+        self._world_floor = self.test_spritesheet.image_at((32, 32, 16, 16))
 
         self.player_spritesheet = Spritesheet("./assets/brackeys_platformer_assets/sprites/knight.png")
-        self._p = self.player_spritesheet.image_at((9,9,17,24))
+        self._p = self.player_spritesheet.image_at((9, 9, 17, 24))
 
 
     def update(self, model: Model2D):  # does this need model as an argument?
@@ -57,9 +57,9 @@ class View2D(View):
         for i, row in enumerate(model.world.world_map):
             for j, col in enumerate(model.world.world_map[i]):
                 if row[j] == 'w':
-                    self._screen.blit(self._world_floor, (j*16,i*16))
+                    self._screen.blit(self._world_floor, (j*16, i*16))
                 elif row[j] == ' ':
-                    pygame.draw.rect(self._screen, (17, 17, 39), (j*16, i*16, 16, 16))
+                    pygame.draw.rect(self._screen, Settings.BG_DARK_BLUE_GRAY, (j*16, i*16, 16, 16))
 
         # pygame.draw.circle(self._screen, (255, 0, 0), (model.player.pos[0], model.player.pos[1]), 25)  # Example of drawing a red rectangle
         self._screen.blit(self._p, (model.player.pos[0], model.player.pos[1]))
